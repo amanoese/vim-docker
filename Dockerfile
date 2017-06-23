@@ -1,14 +1,14 @@
 FROM alpine
 
 RUN apk add --update --virtual .for-vimproc gcc g++ make
-RUN apk add --update --no-cache wget curl git vim
+RUN apk add --update --no-cache wget curl git vim vimdiff
 
 RUN git clone https://github.com/amanoese/dotfiles.git /root/.dotfiles && \
     ln -s ~/.dotfiles/.vimrc ~/.vimrc && \
     ln -s ~/.dotfiles/.gvimrc ~/.gvimrc && \
     mkdir -p ~/.vim/vimSwap ~/.vim/vimBackUp ~/.vim/undo
 
-RUN yes d | vim +':silent! call dein#install()' +q!
+RUN yes d | vim -c ':silent! call dein#install() | :q!'
 
 RUN apk del --purge .for-vimproc
 
