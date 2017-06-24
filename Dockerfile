@@ -1,7 +1,8 @@
 FROM alpine
 
 RUN apk add --update --virtual .for-vimproc gcc g++ make
-RUN apk add --update --no-cache wget curl git ssh vim vimdiff
+RUN apk add --update --no-cache openssh
+RUN apk add --update --no-cache wget curl git vim vimdiff
 
 ENV HOME /root
 RUN git clone https://github.com/amanoese/dotfiles.git /root/.dotfiles && \
